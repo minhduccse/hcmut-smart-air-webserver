@@ -1,0 +1,92 @@
+body {
+  font-family: Lato;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-weight: 700;
+  font-family: Montserrat;
+}
+
+.bg-primary {
+  background-color: #18bc9c !important;
+}
+
+.bg-secondary {
+  background-color: #2c3e50 !important;
+}
+
+.bg-color-indoor {
+  background-color: #1f5bff !important;
+}
+
+#mainNav {
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+  font-weight: 700;
+  font-family: Montserrat;
+}
+
+#mainNav .navbar-brand {
+  color: #fff;
+}
+
+header.masthead {
+  padding-top: calc(6rem + 72px);
+  padding-bottom: 6rem;
+}
+
+@media (min-width: 992px) {
+  #mainNav {
+    padding-top: 1.5rem;
+    padding-bottom: 1.5rem;
+    -webkit-transition: padding-top 0.3s, padding-bottom 0.3s;
+    transition: padding-top 0.3s, padding-bottom 0.3s;
+  }
+  #mainNav .navbar-brand {
+    font-size: 2em;
+    -webkit-transition: font-size 0.3s;
+    transition: font-size 0.3s;
+  }
+}
+
+.card-header{
+  font-size: 15pt;
+}
+
+.print-temperature{
+  font-size: 40pt;
+  font-weight: 700;
+}
+
+#indoor-temperature{
+  background-color: #7cb9ff
+}
+
+#outdoor-temperature{
+  background-color: #ffe3af
+}
+
+#control-temperature{
+  background-color: #f8f9fa
+}
+
+#number-of-record{
+  background-color: #ce91ff
+}
+
+#up-btn{
+  font-size: 20pt;
+  height: 60px;
+  width: 60px;
+}
+
+#down-btn{
+  font-size: 20pt;
+  height: 60px;
+  width: 60px;
+}
