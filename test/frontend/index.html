@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Dashboard</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
+
+    <!-- Fontawesome CSS -->
+    <link href="vendor/fontawesome/css/all.min.css" rel="stylesheet" />
+
+    <!-- Custom styles for this template -->
+    <link href="css/smart-air.css" rel="stylesheet" />
+  </head>
+  <body id="page-top">
+    <!-- Navigation -->
+    <nav
+      class="navbar navbar-expand-lg bg-secondary fixed-top text-uppercase"
+      id="mainNav"
+    >
+      <div class="container">
+        <a class="navbar-brand js-scroll-trigger" href="#page-top"
+          >Smart Air Dashboard</a
+        >
+      </div>
+    </nav>
+
+    <!-- Page Content -->
+    <header class="masthead bg-primary text-center">
+      <div class="container">
+        <div class="row">
+          <div class="col-sm-6 col-lg-3">
+            <div
+              class="card mb-3 print-temperature"
+              id="indoor-temperature"
+              style="max-width: 18rem;"
+            >
+              <div class="card-header"><h6>Indoor Temperature</h6></div>
+              <div class="card-body"><p class="card-text">25 °C</p></div>
+            </div>
+          </div>
+
+          <div class="col-sm-6 col-lg-3">
+            <div
+              class="card mb-3 print-temperature"
+              id="outdoor-temperature"
+              style="max-width: 18rem;"
+            >
+              <div class="card-header"><h6>Outdoor Temperature</h6></div>
+              <div class="card-body"><p class="card-text">30 °C</p></div>
+            </div>
+          </div>
+
+          <div class="col-sm-6 col-lg-3">
+            <div
+              class="card mb-3 print-temperature"
+              id="control-temperature"
+              style="max-width: 18rem;"
+            >
+              <div class="card-header"><h6>Control Temperature</h6></div>
+              <div class="card-body">
+                <button type="button" class="btn btn-danger btn-lg fa fa-chevron-up" id="down-btn" aria-hidden="true"></button>
+                <button type="button" class="btn btn-success btn-lg fa fa-chevron-down" id="up-btn" aria-hidden="true"></button>
+              </div>
+            </div>
+          </div>
+
+
+          <div class="col-md-6 col-lg-3">
+              <div
+                class="card mb-3 print-temperature"
+                id="number-of-record"
+                style="max-width: 18rem;"
+              >
+                <div class="card-header"><h6>Number of records</h6></div>
+                <div class="card-body"><p class="card-text">10000</p></div>
+              </div>
+            </div>
+
+
+            
+        </div>
+
+        <div class="row">
+          <h1>Half Slider by Start Bootstrap</h1>
+          <p>
+            The background images for the slider are set directly in the HTML
+            using inline CSS. The rest of the styles for this template are
+            contained within the <code>half-slider.css</code> file.
+          </p>
+        </div>
+      </div>
+    </header>
+
+    <!-- Footer -->
+    <footer class="py-5 bg-dark">
+      <div class="container">
+        <p class="m-0 text-center text-white">
+          Copyright &copy; Smart Air Conditioner Dashboard 2018
+        </p>
+      </div>
+      <!-- /.container -->
+    </footer>
+
+    <!-- Bootstrap core JavaScript -->
+    <script src="vendor/jquery/jquery.min.js"></script>
+    <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+  </body>
+</html>
