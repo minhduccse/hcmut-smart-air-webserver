@@ -77,7 +77,7 @@ class Content extends Component {
 
           
           <div className="row">
-            <h1>Half Slider by Start Bootstrap</h1>
+            <h1>This is Dashboard</h1>
             <p>
               The background images for the slider are set directly in the HTML
               using inline CSS. The rest of the styles for this template are
