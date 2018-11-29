@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import Fire from "./Fire";
 
 class Content extends Component {
-  constructor(){
+  constructor() {
     super();
     this.state = {
       indoor: 0,
@@ -11,7 +11,7 @@ class Content extends Component {
     };
   }
 
-  componentDidMount(){
+  componentDidMount() {
     const rootRef = Fire.database().ref();
     const indoorRef = rootRef.child("indoor");
     const outdoorRef = rootRef.child("outdoor");
@@ -19,25 +19,25 @@ class Content extends Component {
     const remoteRef = rootRef.child("remote");
     indoorRef.on("value", snapshot => {
       this.setState({
-        indoor: snapshot.val(),
+        indoor: snapshot.val()
       });
     });
 
     outdoorRef.on("value", snapshot => {
       this.setState({
-        outdoor: snapshot.val(),
+        outdoor: snapshot.val()
       });
     });
 
     recordRef.on("value", snapshot => {
       this.setState({
-        numrecords: snapshot.val(),
+        numrecords: snapshot.val()
       });
     });
 
     remoteRef.on("value", snapshot => {
       this.setState({
-        remote: snapshot.val(),
+        remote: snapshot.val()
       });
     });
   }
@@ -47,7 +47,7 @@ class Content extends Component {
       <header className="masthead bg-primary text-center">
         <div className="container">
           <div className="row">
-          <div className="col-sm-6 col-lg-3">
+            <div className="col-sm-6 col-lg-3">
               <div
                 className="card mb-3 print-temperature"
                 id="air-conditioner"
@@ -57,7 +57,7 @@ class Content extends Component {
                   <h6>Air Conditioner</h6>
                 </div>
                 <div className="card-body">
-                <p className="card-text">{this.state.remote} °C</p>
+                  <p className="card-text">{this.state.remote} °C</p>
                 </div>
               </div>
             </div>
@@ -91,7 +91,6 @@ class Content extends Component {
               </div>
             </div>
 
-            
             <div className="col-md-6 col-lg-3">
               <div
                 className="card mb-3 print-temperature"
@@ -108,7 +107,6 @@ class Content extends Component {
             </div>
           </div>
 
-          
           <div className="row">
             <h1>This is Dashboard</h1>
             <p>
@@ -127,18 +125,20 @@ class Content extends Component {
                   <h6>Control Temperature</h6>
                 </div>
                 <div className="card-body">
-                  <button
-                    type="button"
-                    className="btn btn-danger btn-lg fa fa-chevron-up"
-                    id="down-btn"
-                    aria-hidden="true"
-                  />
-                  <button
-                    type="button"
-                    className="btn btn-success btn-lg fa fa-chevron-down"
-                    id="up-btn"
-                    aria-hidden="true"
-                  />
+                  <div className="btn btn-group">
+                    <button
+                      type="button"
+                      className="btn btn-danger btn-lg fa fa-chevron-up"
+                      id="down-btn"
+                      aria-hidden="true"
+                    />
+                    <button
+                      type="button"
+                      className="btn btn-success btn-lg fa fa-chevron-down"
+                      id="up-btn"
+                      aria-hidden="true"
+                    />
+                  </div>
                 </div>
               </div>
             </div>
