@@ -12,10 +12,25 @@ class Content extends Component {
   }
 
   componentDidMount(){
-    const rootRef = Fire.database().ref().child("indoor");
-    rootRef.on("value", snapshot => {
+    const rootRef = Fire.database().ref();
+    const indoorRef = rootRef.child("indoor");
+    const outdoorRef = rootRef.child("outdoor");
+    const recordRef = rootRef.child("index");
+    indoorRef.on("value", snapshot => {
       this.setState({
         indoor: snapshot.val(),
+      });
+    });
+
+    outdoorRef.on("value", snapshot => {
+      this.setState({
+        outdoor: snapshot.val(),
+      });
+    });
+
+    recordRef.on("value", snapshot => {
+      this.setState({
+        numrecords: snapshot.val(),
       });
     });
   }
