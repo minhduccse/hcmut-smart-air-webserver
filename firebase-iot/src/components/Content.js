@@ -16,6 +16,7 @@ class Content extends Component {
     const indoorRef = rootRef.child("indoor");
     const outdoorRef = rootRef.child("outdoor");
     const recordRef = rootRef.child("index");
+    const remoteRef = rootRef.child("remote");
     indoorRef.on("value", snapshot => {
       this.setState({
         indoor: snapshot.val(),
@@ -33,6 +34,12 @@ class Content extends Component {
         numrecords: snapshot.val(),
       });
     });
+
+    remoteRef.on("value", snapshot => {
+      this.setState({
+        remote: snapshot.val(),
+      });
+    });
   }
 
   render() {
@@ -40,6 +47,21 @@ class Content extends Component {
       <header className="masthead bg-primary text-center">
         <div className="container">
           <div className="row">
+          <div className="col-sm-6 col-lg-3">
+              <div
+                className="card mb-3 print-temperature"
+                id="air-conditioner"
+                style={{ maxWidth: "18rem" }}
+              >
+                <div className="card-header">
+                  <h6>Air Conditioner</h6>
+                </div>
+                <div className="card-body">
+                <p className="card-text">{this.state.remote} °C</p>
+                </div>
+              </div>
+            </div>
+
             <div className="col-sm-6 col-lg-3">
               <div
                 className="card mb-3 print-temperature"
@@ -68,6 +90,33 @@ class Content extends Component {
                 </div>
               </div>
             </div>
+
+            
+            <div className="col-md-6 col-lg-3">
+              <div
+                className="card mb-3 print-temperature"
+                id="number-of-record"
+                style={{ maxWidth: "18rem" }}
+              >
+                <div className="card-header">
+                  <h6>Number of records</h6>
+                </div>
+                <div className="card-body">
+                  <p className="card-text">{this.state.numrecords}</p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          
+          <div className="row">
+            <h1>This is Dashboard</h1>
+            <p>
+              The background images for the slider are set directly in the HTML
+              using inline CSS. The rest of the styles for this template are
+              contained within the <code>half-slider.css</code> file.
+            </p>
+
             <div className="col-sm-6 col-lg-3">
               <div
                 className="card mb-3 print-temperature"
@@ -93,30 +142,6 @@ class Content extends Component {
                 </div>
               </div>
             </div>
-            <div className="col-md-6 col-lg-3">
-              <div
-                className="card mb-3 print-temperature"
-                id="number-of-record"
-                style={{ maxWidth: "18rem" }}
-              >
-                <div className="card-header">
-                  <h6>Number of records</h6>
-                </div>
-                <div className="card-body">
-                  <p className="card-text">{this.state.numrecords}</p>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          
-          <div className="row">
-            <h1>This is Dashboard</h1>
-            <p>
-              The background images for the slider are set directly in the HTML
-              using inline CSS. The rest of the styles for this template are
-              contained within the <code>half-slider.css</code> file.
-            </p>
           </div>
         </div>
       </header>
