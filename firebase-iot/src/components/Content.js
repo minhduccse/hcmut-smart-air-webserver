@@ -1,6 +1,25 @@
 import React, { Component } from "react";
+import Fire from "./Fire";
 
 class Content extends Component {
+  constructor(){
+    super();
+    this.state = {
+      indoor: 0,
+      outdoor: 0,
+      numrecords: 0
+    };
+  }
+
+  componentDidMount(){
+    const rootRef = Fire.database().ref().child("indoor");
+    rootRef.on("value", snapshot => {
+      this.setState({
+        indoor: snapshot.val(),
+      });
+    });
+  }
+
   render() {
     return (
       <header className="masthead bg-primary text-center">
@@ -16,7 +35,7 @@ class Content extends Component {
                   <h6>Indoor Temperature</h6>
                 </div>
                 <div className="card-body">
-                  <p className="card-text">25 °C</p>
+                  <p className="card-text">{this.state.indoor} °C</p>
                 </div>
               </div>
             </div>
@@ -30,7 +49,7 @@ class Content extends Component {
                   <h6>Outdoor Temperature</h6>
                 </div>
                 <div className="card-body">
-                  <p className="card-text">30 °C</p>
+                  <p className="card-text">{this.state.outdoor} °C</p>
                 </div>
               </div>
             </div>
@@ -69,7 +88,7 @@ class Content extends Component {
                   <h6>Number of records</h6>
                 </div>
                 <div className="card-body">
-                  <p className="card-text">10000</p>
+                  <p className="card-text">{this.state.numrecords}</p>
                 </div>
               </div>
             </div>
