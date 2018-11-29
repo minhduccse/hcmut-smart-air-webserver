@@ -8,6 +8,5 @@ var config = {
     storageBucket: "smart-conditioner.appspot.com",
     messagingSenderId: "896302941195"
   };
-  firebase.initializeApp(config);
 var Fire = firebase.initializeApp(config);
 export default Fire;
