@@ -1,22 +1,60 @@
 import React, { Component } from "react";
 import Fire from "./Fire";
 
+const rootRef = Fire.database().ref();
+const indoorRef = rootRef.child("indoor");
+const outdoorRef = rootRef.child("outdoor");
+const recordRef = rootRef.child("index");
+const remoteRef = rootRef.child("remote");
+
 class Content extends Component {
   constructor() {
     super();
     this.state = {
       indoor: 0,
       outdoor: 0,
-      numrecords: 0
+      numrecords: 0,
+      remote: 0
     };
+
+    this.tempUp = this.tempUp.bind(this);
+  }
+
+  tempDown = () => {
+    var now = new Date();
+    this.setState({
+      remote: (Number)(this.state.remote) - 1,
+      numrecords: (Number)(this.state.numrecords) + 1
+    });
+    rootRef.update({
+      index: this.state.numrecords.toString(),
+      remote: this.state.remote.toString()
+    });
+    rootRef.push({
+      time: now.toLocaleString(),
+      index: this.state.numrecords.toString(),
+      remote: this.state.remote.toString()
+    });
+  }
+
+  tempUp = () => {
+    var now = new Date();
+    this.setState({
+      remote: (Number)(this.state.remote) + 1,
+      numrecords: (Number)(this.state.numrecords) + 1
+    });
+    rootRef.update({
+      index: this.state.numrecords.toString(),
+      remote: this.state.remote.toString()
+    });
+    rootRef.push({
+      time: now.toLocaleString(),
+      index: this.state.numrecords.toString(),
+      remote: this.state.remote.toString()
+    });
   }
 
   componentDidMount() {
-    const rootRef = Fire.database().ref();
-    const indoorRef = rootRef.child("indoor");
-    const outdoorRef = rootRef.child("outdoor");
-    const recordRef = rootRef.child("index");
-    const remoteRef = rootRef.child("remote");
     indoorRef.on("value", snapshot => {
       this.setState({
         indoor: snapshot.val()
@@ -41,6 +79,8 @@ class Content extends Component {
       });
     });
   }
+
+  
 
   render() {
     return (
@@ -128,15 +168,17 @@ class Content extends Component {
                   <div className="btn btn-group">
                     <button
                       type="button"
-                      className="btn btn-danger btn-lg fa fa-chevron-up"
+                      className="btn btn-danger btn-lg fa fa-chevron-down"
                       id="down-btn"
                       aria-hidden="true"
+                      onClick={this.tempDown}
                     />
                     <button
                       type="button"
-                      className="btn btn-success btn-lg fa fa-chevron-down"
+                      className="btn btn-success btn-lg fa fa-chevron-up"
                       id="up-btn"
                       aria-hidden="true"
+                      onClick={this.tempUp}
                     />
                   </div>
                 </div>
