@@ -18,6 +18,7 @@ class Content extends Component {
     };
 
     this.tempUp = this.tempUp.bind(this);
+    this.tempDown = this.tempDown.bind(this);
   }
 
   tempDown = () => {
@@ -25,15 +26,16 @@ class Content extends Component {
     this.setState({
       remote: (Number)(this.state.remote) - 1,
       numrecords: (Number)(this.state.numrecords) + 1
-    });
-    rootRef.update({
-      index: this.state.numrecords.toString(),
-      remote: this.state.remote.toString()
-    });
-    rootRef.push({
-      time: now.toLocaleString(),
-      index: this.state.numrecords.toString(),
-      remote: this.state.remote.toString()
+    }, () => {
+      rootRef.update({
+        index: this.state.numrecords.toString(),
+        remote: this.state.remote.toString()
+      });
+      rootRef.push({
+        time: now.toLocaleString(),
+        index: this.state.numrecords.toString(),
+        remote: this.state.remote.toString()
+      });
     });
   }
 
@@ -42,15 +44,16 @@ class Content extends Component {
     this.setState({
       remote: (Number)(this.state.remote) + 1,
       numrecords: (Number)(this.state.numrecords) + 1
-    });
-    rootRef.update({
-      index: this.state.numrecords.toString(),
-      remote: this.state.remote.toString()
-    });
-    rootRef.push({
-      time: now.toLocaleString(),
-      index: this.state.numrecords.toString(),
-      remote: this.state.remote.toString()
+    }, () => {
+      rootRef.update({
+        index: this.state.numrecords.toString(),
+        remote: this.state.remote.toString()
+      });
+      rootRef.push({
+        time: now.toLocaleString(),
+        index: this.state.numrecords.toString(),
+        remote: this.state.remote.toString()
+      });
     });
   }
 
@@ -131,7 +134,7 @@ class Content extends Component {
               </div>
             </div>
 
-            <div className="col-md-6 col-lg-3">
+            <div className="col-sm-6 col-lg-3">
               <div
                 className="card mb-3 print-temperature"
                 id="number-of-record"
@@ -148,12 +151,12 @@ class Content extends Component {
           </div>
 
           <div className="row">
-            <h1>This is Dashboard</h1>
+            {/* <h1>This is Dashboard</h1>
             <p>
               The background images for the slider are set directly in the HTML
               using inline CSS. The rest of the styles for this template are
               contained within the <code>half-slider.css</code> file.
-            </p>
+            </p> */}
 
             <div className="col-sm-6 col-lg-3">
               <div
