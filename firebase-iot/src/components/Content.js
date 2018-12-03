@@ -14,7 +14,8 @@ class Content extends Component {
       indoor: 0,
       outdoor: 0,
       numrecords: 0,
-      remote: 0
+      remote: 0,
+      status: "unknown"
     };
 
     this.tempUp = this.tempUp.bind(this);
@@ -187,6 +188,25 @@ class Content extends Component {
                 </div>
               </div>
             </div>
+          
+          
+            <div className="col-sm-6 col-lg-3">
+              <div
+                className="card text-white bg-danger mb-3 status"
+                style={{ maxWidth: "18rem" }}
+              >
+                <div className="card-header">
+                  <h6>Status</h6>
+                </div>
+                <div className="card-body">
+                  <p className="card-text">{this.state.status}</p>
+                </div>
+              </div>
+            </div>
+          
+          
+          
+          
           </div>
         </div>
       </header>

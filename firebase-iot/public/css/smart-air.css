@@ -61,6 +61,13 @@ header.masthead {
 .print-temperature{
   font-size: 40pt;
   font-weight: 700;
+  line-height: 65pt;
+}
+
+.status{
+  font-size: 25pt;
+  font-weight: 700;
+  line-height: 65pt;
 }
 
 #indoor-temperature{
