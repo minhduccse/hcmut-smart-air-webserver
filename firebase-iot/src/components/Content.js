@@ -9,7 +9,8 @@ const currentRef = rootRef.child("current");
 const indoorNowRef = currentRef.child("indoorNow");
 const outdoorNowRef = currentRef.child("outdoorNow");
 const remoteNowRef = currentRef.child("remoteNow");
-const recordRef = currentRef.child("total");
+const remoteIdxRef = currentRef.child("remoteIdx");
+const totalRef = currentRef.child("total");
 
 class Content extends Component {
   constructor() {
@@ -18,10 +19,8 @@ class Content extends Component {
       indoor: 0,
       outdoor: 0,
       remote: 0,
-      indoorIdx: 0,
-      outdoorIdx: 0,
       remoteIdx: 0,
-      numrecords: 0,
+      total: 0,
       status: "unknown"
     };
 
@@ -34,17 +33,19 @@ class Content extends Component {
     this.setState(
       {
         remote: Number(this.state.remote) - 1,
-        numrecords: Number(this.state.numrecords) + 1
+        remoteIdx: Number(this.state.remoteIdx) + 1,
+        total: Number(this.state.total) + 1
       },
       () => {
-        rootRef.update({
-          index: this.state.numrecords.toString(),
-          remote: this.state.remote.toString()
+        currentRef.update({
+          total: this.state.total.toString(),
+          remoteIdx: this.state.remoteIdx.toString(),
+          remoteNow: this.state.remote.toString()
         });
         remoteRef.push({
           time: now.toLocaleString(),
-          index: this.state.numrecords.toString(),
-          remote: this.state.remote.toString()
+          index: this.state.remoteIdx.toString(),
+          value: this.state.remote.toString()
         });
       }
     );
@@ -55,17 +56,19 @@ class Content extends Component {
     this.setState(
       {
         remote: Number(this.state.remote) + 1,
-        numrecords: Number(this.state.numrecords) + 1
+        remoteIdx: Number(this.state.remoteIdx) + 1,
+        total: Number(this.state.total) + 1
       },
       () => {
-        rootRef.update({
-          index: this.state.numrecords.toString(),
-          remote: this.state.remote.toString()
+        currentRef.update({
+          total: this.state.total.toString(),
+          remoteIdx: this.state.remoteIdx.toString(),
+          remoteNow: this.state.remote.toString()
         });
-        rootRef.push({
+        remoteRef.push({
           time: now.toLocaleString(),
-          index: this.state.numrecords.toString(),
-          remote: this.state.remote.toString()
+          index: this.state.remoteIdx.toString(),
+          value: this.state.remote.toString()
         });
       }
     );
@@ -84,17 +87,24 @@ class Content extends Component {
       });
     });
 
-    recordRef.on("value", snapshot => {
-      this.setState({
-        numrecords: snapshot.val()
-      });
-    });
-
     remoteNowRef.on("value", snapshot => {
       this.setState({
         remote: snapshot.val()
       });
     });
+
+    totalRef.on("value", snapshot => {
+      this.setState({
+        total: snapshot.val()
+      });
+    });
+
+    remoteIdxRef.on("value", snapshot => {
+      this.setState({
+        remoteIdx: snapshot.val()
+      });
+    });
+
   }
 
   render() {
@@ -161,7 +171,7 @@ class Content extends Component {
                       <h6>Number of records</h6>
                     </div>
                     <div className="card-body">
-                      <p className="card-text">{this.state.numrecords}</p>
+                      <p className="card-text">{this.state.total}</p>
                     </div>
                   </div>
                 </div>
@@ -218,7 +228,7 @@ class Content extends Component {
               <div className="row">
                 <div className="col-sm-12 col-lg-12">
                   <div
-                    className="card mb-12 bg-light"
+                    className="card mb-6 bg-light"
                     style={{ maxWidth: "36rem" }}
                   >
                     <div className="card-header">
