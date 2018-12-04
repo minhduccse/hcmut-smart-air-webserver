@@ -3,10 +3,11 @@ import Fire from "./Fire";
 import { Line } from "react-chartjs-2";
 
 const rootRef = Fire.database().ref();
-const indoorRef = rootRef.orderByChild("index").limitToLast(5);
-var labelArr = [];
+const indoorRef = rootRef.child("indoor");
+const indoorDataChart = indoorRef.orderByChild("index").limitToLast(5);
+var labelTemp;
 
-class LineChart extends Component {
+class IndoorChart extends Component {
   constructor() {
     super();
     this.state = {
@@ -35,35 +36,12 @@ class LineChart extends Component {
             pointRadius: 3,
             pointHitRadius: 10,
             data: []
-          },
-          {
-            label: "Outdoor Temperature",
-            fill: false,
-            lineTension: 0.1,
-            backgroundColor: "#ffe3af",
-            borderColor: "#ff9900",
-            borderCapStyle: "butt",
-            borderDash: [],
-            borderDashOffset: 0.0,
-            borderJoinStyle: "miter",
-            borderWidth: "2",
-            cubicInterpolationMode: "monotone",
-            pointBorderColor: "#ffe3af",
-            pointBackgroundColor: "#ff9900",
-            pointBorderWidth: 1,
-            pointHoverRadius: 5,
-            pointHoverBackgroundColor: "#ffe3af",
-            pointHoverBorderColor: "rgba(220,220,220,1)",
-            pointHoverBorderWidth: 2,
-            pointRadius: 3,
-            pointHitRadius: 10,
-            data: []
           }
         ]
       },
       lineChartOptions: {
         responsive: true,
-        maintainAspectRatio: true,
+        maintainAspectRatio: false,
         tooltips: {
           enabled: true
         },
@@ -82,20 +60,20 @@ class LineChart extends Component {
   }
 
   componentDidMount() {
-    indoorRef.once("value", snapshot => {
+    indoorDataChart.once("value", snapshot => {
       snapshot.forEach(childSnapshot => {
         const oldIndoorDataSet = this.state.lineChartData.datasets[0];
-        const oldOutdoorDataSet = this.state.lineChartData.datasets[1];
         const newIndoorDataSet = { ...oldIndoorDataSet };
-        newIndoorDataSet.data.push(childSnapshot.val().indoor);
-        labelArr.push(childSnapshot.val().time);
+
+        newIndoorDataSet.data.push(childSnapshot.val().value);
+        labelTemp = childSnapshot.val().time;
 
         const newChartData = {
           ...this.state.lineChartData,
-          datasets: [newIndoorDataSet, oldOutdoorDataSet],
-          labels: this.state.lineChartData.labels.concat(labelArr)
+          datasets: [newIndoorDataSet],
+          labels: this.state.lineChartData.labels.concat(labelTemp)
         };
-        
+
         this.setState({ lineChartData: newChartData });
       });
     });
@@ -113,4 +91,4 @@ class LineChart extends Component {
   }
 }
 
-export default LineChart;
+export default IndoorChart;
