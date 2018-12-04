@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import Fire from "./Fire";
+import LineChart from "./LineChart";
 
 const rootRef = Fire.database().ref();
 const indoorRef = rootRef.child("indoor");
@@ -152,13 +153,7 @@ class Content extends Component {
           </div>
 
           <div className="row">
-            {/* <h1>This is Dashboard</h1>
-            <p>
-              The background images for the slider are set directly in the HTML
-              using inline CSS. The rest of the styles for this template are
-              contained within the <code>half-slider.css</code> file.
-            </p> */}
-
+            
             <div className="col-sm-6 col-lg-3">
               <div
                 className="card mb-3 print-temperature"
@@ -204,8 +199,19 @@ class Content extends Component {
               </div>
             </div>
           
-          
-          
+            <div className="col-sm-12 col-lg-6">
+              <div
+                className="card mb-6 bg-light"
+                style={{ maxWidth: "36rem" }}
+              >
+                <div className="card-header">
+                  <h6>Line Chart</h6>
+                </div>
+                <div className="card-body">
+                  <LineChart/>
+                </div>
+              </div>
+            </div>
           
           </div>
         </div>
