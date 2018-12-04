@@ -60,22 +60,20 @@ class OutdoorChart extends Component {
   }
 
   componentDidMount() {
-    outdoorDataChart.once("value", snapshot => {
-      snapshot.forEach(childSnapshot => {
-        const oldOutdoorDataSet = this.state.lineChartData.datasets[0];
-        const newOutdoorDataSet = { ...oldOutdoorDataSet };
+    outdoorDataChart.on("child_added", snapshot => {
+      const oldOutdoorDataSet = this.state.lineChartData.datasets[0];
+      const newOutdoorDataSet = { ...oldOutdoorDataSet };
 
-        newOutdoorDataSet.data.push(childSnapshot.val().value);
-        labelTemp = childSnapshot.val().time;
+      newOutdoorDataSet.data.push(snapshot.val().value);
+      labelTemp = snapshot.val().time;
 
-        const newChartData = {
-          ...this.state.lineChartData,
-          datasets: [newOutdoorDataSet],
-          labels: this.state.lineChartData.labels.concat(labelTemp)
-        };
+      const newChartData = {
+        ...this.state.lineChartData,
+        datasets: [newOutdoorDataSet],
+        labels: this.state.lineChartData.labels.concat(labelTemp)
+      };
 
-        this.setState({ lineChartData: newChartData });
-      });
+      this.setState({ lineChartData: newChartData });
     });
   }
 

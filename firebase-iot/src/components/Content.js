@@ -228,7 +228,7 @@ class Content extends Component {
               <div className="row">
                 <div className="col-sm-12 col-lg-12">
                   <div
-                    className="card mb-6 bg-light"
+                    className="card mb-6 bg-light chart"
                     style={{ maxWidth: "36rem" }}
                   >
                     <div className="card-header">
@@ -243,7 +243,7 @@ class Content extends Component {
               <div className="row">
                 <div className="col-sm-12 col-lg-12">
                   <div
-                    className="card mb-6 bg-light"
+                    className="card mb-6 bg-light chart"
                     style={{ maxWidth: "36rem" }}
                   >
                     <div className="card-header">

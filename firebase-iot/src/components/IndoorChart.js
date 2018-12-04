@@ -60,22 +60,20 @@ class IndoorChart extends Component {
   }
 
   componentDidMount() {
-    indoorDataChart.once("value", snapshot => {
-      snapshot.forEach(childSnapshot => {
-        const oldIndoorDataSet = this.state.lineChartData.datasets[0];
-        const newIndoorDataSet = { ...oldIndoorDataSet };
+    indoorDataChart.on("child_added", snapshot => {
+      const oldIndoorDataSet = this.state.lineChartData.datasets[0];
+      const newIndoorDataSet = { ...oldIndoorDataSet };
 
-        newIndoorDataSet.data.push(childSnapshot.val().value);
-        labelTemp = childSnapshot.val().time;
+      newIndoorDataSet.data.push(snapshot.val().value);
+      labelTemp = snapshot.val().time;
 
-        const newChartData = {
-          ...this.state.lineChartData,
-          datasets: [newIndoorDataSet],
-          labels: this.state.lineChartData.labels.concat(labelTemp)
-        };
+      const newChartData = {
+        ...this.state.lineChartData,
+        datasets: [newIndoorDataSet],
+        labels: this.state.lineChartData.labels.concat(labelTemp)
+      };
 
-        this.setState({ lineChartData: newChartData });
-      });
+      this.setState({ lineChartData: newChartData });
     });
   }
 

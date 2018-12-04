@@ -70,6 +70,11 @@ header.masthead {
   line-height: 65pt;
 }
 
+.chart{
+  padding-bottom: 30px;
+  margin-bottom: 30px;
+}
+
 #indoor-temperature{
   background-color: #7cb9ff
 }
