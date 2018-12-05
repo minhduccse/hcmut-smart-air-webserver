@@ -44,7 +44,7 @@ class Content extends Component {
         });
         remoteRef.push({
           time: now.toLocaleString(),
-          index: this.state.remoteIdx.toString(),
+          index: this.state.remoteIdx,
           value: this.state.remote.toString()
         });
       }
@@ -67,7 +67,7 @@ class Content extends Component {
         });
         remoteRef.push({
           time: now.toLocaleString(),
-          index: this.state.remoteIdx.toString(),
+          index: this.state.remoteIdx,
           value: this.state.remote.toString()
         });
       }
