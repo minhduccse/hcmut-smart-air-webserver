@@ -10,6 +10,7 @@ const indoorNowRef = currentRef.child("indoorNow");
 const outdoorNowRef = currentRef.child("outdoorNow");
 const remoteNowRef = currentRef.child("remoteNow");
 const remoteIdxRef = currentRef.child("remoteIdx");
+const statusRef = currentRef.child("status");
 const totalRef = currentRef.child("total");
 
 class Content extends Component {
@@ -90,6 +91,12 @@ class Content extends Component {
     remoteNowRef.on("value", snapshot => {
       this.setState({
         remote: snapshot.val()
+      });
+    });
+
+    statusRef.on("value", snapshot => {
+      this.setState({
+        status: snapshot.val()
       });
     });
 
